@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- Asegura que el sitio se vea bien en celulares y tablets -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Título que aparece en la pestaña del navegador -->
+  <title>Dra. Tamara Vega Ortega — Médica Cirujana</title>
+
+  <!-- Descripción para Google (SEO) -->
+  <meta name="description" content="Médica Cirujana egresada de la Universidad de Chile. Atención ambulatoria en Puerto Varas y Puerto Montt. Medicina general, estilo de vida y salud integrativa." />
+
+  <!-- Fuentes de Google Fonts: Playfair Display para títulos, Lato para cuerpo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <!-- Íconos de Font Awesome (teléfono, email, ubicación, etc.) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Nuestro archivo de estilos principal -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       SELECTOR DE TEMA (solo visible durante desarrollo)
+       Para elegir el tema final de la doctora.
+       Cuando se elija el tema definitivo, se puede eliminar este bloque.
+  ============================================================ -->
+  <div id="theme-selector">
+    <span class="theme-label">Elegir tema:</span>
+    <button class="theme-btn active" data-theme="azul" title="Azul / Turquesa">
+      <span class="theme-dot azul"></span> Azul
+    </button>
+    <button class="theme-btn" data-theme="verde" title="Verde Salud">
+      <span class="theme-dot verde"></span> Verde
+    </button>
+    <button class="theme-btn" data-theme="rosa" title="Rosa Profesional">
+      <span class="theme-dot rosa"></span> Rosa
+    </button>
+  </div>
+
+  <!-- ============================================================
+       ENCABEZADO / NAVEGACIÓN
+       Barra fija en la parte superior con links a cada sección.
+  ============================================================ -->
+  <header id="header">
+    <nav class="nav-container">
+      <!-- Logo / nombre corto -->
+      <a href="#inicio" class="nav-logo">Dra. Tamara Vega</a>
+
+      <!-- Botón hamburguesa para menú móvil (se activa con JS) -->
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Links de navegación -->
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#inicio"     class="nav-link">Inicio</a></li>
+        <li><a href="#perfil"     class="nav-link">Perfil</a></li>
+        <li><a href="#experiencia" class="nav-link">Experiencia</a></li>
+        <li><a href="#formacion"  class="nav-link">Formación</a></li>
+        <li><a href="#contacto"   class="nav-link">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+     SECCIÓN HERO (INICIO)
+     Diseño fusión v4: nombre izquierda | foto con círculos | datos derecha
+     Texto decorativo de fondo, barras de acento y botones lado a lado.
+============================================================ -->
+<section id="inicio" class="hero">
+
+  <!-- Texto decorativo de fondo (muy sutil) -->
+  <div class="hero-bg-txt">TAMARA VEGA ORTEGA</div>
+
+  <!-- IZQUIERDA: nombre alineado a la derecha -->
+  <div class="hero-izq">
+    <div class="hero-nombre-bloque">
+      <span class="hero-tag">Médica Cirujana</span>
+      <h1 class="hero-nombre">
+        Dra. Tamara
+        <em>Vega Ortega</em>
+      </h1>
+      <p class="hero-univ">
+        <i class="fas fa-graduation-cap"></i>
+        Universidad de Chile · 2022
+      </p>
+    </div>
+  </div>
+
+  <!-- Barra vertical izquierda -->
+  <div class="hero-barra-izq"></div>
+
+  <!-- CENTRO: foto con 3 círculos concéntricos -->
+  <div class="hero-centro">
+    <div class="hero-circulo-3"></div>
+    <div class="hero-circulo-2"></div>
+    <div class="hero-circulo-1"></div>
+    <img
+      src="img/foto-doctora.jpg"
+      alt="Dra. Tamara Vega Ortega — Médica Cirujana"
+      class="hero-foto"
+    />
+  </div>
+
+  <!-- Barra vertical derecha -->
+  <div class="hero-barra-der"></div>
+
+  <!-- DERECHA: datos alineados a la izquierda -->
+  <div class="hero-der">
+    <div class="hero-datos-bloque">
+
+      <p class="hero-dato">
+        <i class="fas fa-map-marker-alt"></i>
+        Puerto Varas &amp; Puerto Montt
+      </p>
+      <p class="hero-dato">
+        <i class="fas fa-stethoscope"></i>
+        Medicina General
+      </p>
+      <p class="hero-dato">
+        <i class="fas fa-leaf"></i>
+        Medicina del Estilo de Vida
+      </p>
+      <p class="hero-dato">
+        <i class="fas fa-spa"></i>
+        Salud Integrativa
+      </p>
+
+      <!-- Botones lado a lado -->
+      <div class="hero-btns">
+        <a href="#contacto" class="btn btn-hero-primario">
+          <i class="fas fa-envelope"></i> Contactar
+        </a>
+        <a href="#perfil" class="btn btn-hero-secundario">
+          <i class="fas fa-user"></i> Conocer más
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+  <!-- ============================================================
+       SECCIÓN PERFIL
+       Presentación profesional y valores de la doctora.
+  ============================================================ -->
+  <section id="perfil" class="seccion seccion-clara">
+    <div class="contenedor">
+
+      <div class="seccion-titulo-wrapper">
+        <h2 class="seccion-titulo">Perfil Profesional</h2>
+        <div class="seccion-linea"></div>
+      </div>
+
+      <div class="perfil-grid">
+
+        <!-- Párrafo de presentación (texto del CV) -->
+        <div class="perfil-texto">
+          <p>
+            Médica Cirujana egresada de la Universidad de Chile, responsable y empática,
+            motivada por el aprendizaje continuo y por aportar en la salud de mis
+            consultantes desde una mirada <strong>integral y basada en la evidencia</strong>.
+          </p>
+          <p>
+            Mi práctica clínica integra la medicina convencional con un enfoque en el
+            estilo de vida, la nutrición y la salud integrativa, buscando siempre
+            el bienestar completo de cada persona que atiendo.
+          </p>
+        </div>
+
+        <!-- Tarjetas de áreas de interés -->
+        <div class="perfil-areas">
+
+          <div class="area-card">
+            <div class="area-icono"><i class="fas fa-heartbeat"></i></div>
+            <h3>Medicina General</h3>
+            <p>Atención ambulatoria integral del adulto y la familia.</p>
+          </div>
+
+          <div class="area-card">
+            <div class="area-icono"><i class="fas fa-leaf"></i></div>
+            <h3>Medicina del Estilo de Vida</h3>
+            <p>Nutrición, hábitos y bienestar como base de la salud.</p>
+          </div>
+
+          <div class="area-card">
+            <div class="area-icono"><i class="fas fa-spa"></i></div>
+            <h3>Salud Integrativa</h3>
+            <p>Visión integral que une cuerpo, mente y contexto de vida.</p>
+          </div>
+
+          <div class="area-card">
+            <div class="area-icono"><i class="fas fa-child"></i></div>
+            <h3>Salud Infantil</h3>
+            <p>Formación en pediatría primaria, infecciones y nutrición infantil.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Dato de idioma -->
+      <div class="perfil-idioma">
+        <i class="fas fa-language"></i>
+        <span>
+          <strong>Inglés avanzado</strong> — Cambridge ESOL "First Certificate in English", Grade A (C1)
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECCIÓN EXPERIENCIA
+       Línea de tiempo con los trabajos de la doctora.
+  ============================================================ -->
+  <section id="experiencia" class="seccion seccion-oscura">
+    <div class="contenedor">
+
+      <div class="seccion-titulo-wrapper">
+        <h2 class="seccion-titulo">Experiencia Profesional</h2>
+        <div class="seccion-linea"></div>
+      </div>
+
+      <!-- Línea de tiempo vertical -->
+      <div class="timeline">
+
+        <!-- Ítem 1: Patagonia Medical (más reciente primero) -->
+        <div class="timeline-item">
+          <div class="timeline-punto"></div>
+          <div class="timeline-tarjeta">
+            <span class="timeline-fecha">Enero 2025 — Presente</span>
+            <h3 class="timeline-cargo">Consulta Médica Ambulatoria</h3>
+            <p class="timeline-lugar">
+              <i class="fas fa-hospital"></i> Patagonia Medical — Puerto Varas
+            </p>
+            <p class="timeline-desc">
+              Atención ambulatoria de Medicina General. Consulta privada con enfoque integral,
+              incorporando medicina del estilo de vida y salud integrativa.
+            </p>
+          </div>
+        </div>
+
+        <!-- Ítem 2: SAR Alerce -->
+        <div class="timeline-item">
+          <div class="timeline-punto"></div>
+          <div class="timeline-tarjeta">
+            <span class="timeline-fecha">Enero 2023 — Presente</span>
+            <h3 class="timeline-cargo">Médica Urgencia APS</h3>
+            <p class="timeline-lugar">
+              <i class="fas fa-hospital"></i> SAR Alerce — Puerto Montt
+            </p>
+            <p class="timeline-desc">
+              Turnos de refuerzo en urgencia de Atención Primaria de Salud.
+            </p>
+          </div>
+        </div>
+
+        <!-- Ítem 3: CECOSF Quilicura -->
+        <div class="timeline-item">
+          <div class="timeline-punto"></div>
+          <div class="timeline-tarjeta">
+            <span class="timeline-fecha">Junio — Noviembre 2022</span>
+            <h3 class="timeline-cargo">Médica en Etapa de Destinación y Formación</h3>
+            <p class="timeline-lugar">
+              <i class="fas fa-hospital"></i> CECOSF Beato Padre Hurtado — Quilicura
+            </p>
+            <p class="timeline-desc">
+              Empleada por el Servicio de Salud Metropolitano Norte. Atención primaria
+              de salud en centro comunitario.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECCIÓN FORMACIÓN
+       Título universitario, diplomados y cursos.
+  ============================================================ -->
+  <section id="formacion" class="seccion seccion-clara">
+    <div class="contenedor">
+
+      <div class="seccion-titulo-wrapper">
+        <h2 class="seccion-titulo">Formación Académica</h2>
+        <div class="seccion-linea"></div>
+      </div>
+
+      <div class="formacion-grid">
+
+        <!-- Columna izquierda: Título universitario -->
+        <div class="formacion-columna">
+          <h3 class="formacion-subtitulo">
+            <i class="fas fa-university"></i> Título Universitario
+          </h3>
+
+          <div class="formacion-titulo-card">
+            <div class="formacion-titulo-icon">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <div>
+              <h4>Médica Cirujana</h4>
+              <p>Universidad de Chile</p>
+              <span class="badge">Titulada 08 de abril, 2022</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna derecha: Diplomados y cursos -->
+        <div class="formacion-columna">
+          <h3 class="formacion-subtitulo">
+            <i class="fas fa-certificate"></i> Diplomados
+          </h3>
+
+          <ul class="formacion-lista">
+
+            <li class="formacion-item">
+              <span class="formacion-anio">2024</span>
+              <div class="formacion-detalle">
+                <strong>Diplomado Medicina del Estilo de Vida</strong>
+                <span>Universidad del Desarrollo y SOCHIMEV</span>
+              </div>
+            </li>
+
+            <li class="formacion-item">
+              <span class="formacion-anio">2024</span>
+              <div class="formacion-detalle">
+                <strong>Diplomado Medicina y Salud Integrativa</strong>
+                <span>Por definir institución</span>
+                <!-- NOTA PARA EL DESARROLLADOR: Confirmar nombre exacto de la institución -->
+              </div>
+            </li>
+
+            <li class="formacion-item">
+              <span class="formacion-anio">2022</span>
+              <div class="formacion-detalle">
+                <strong>Nutrición Vegana y Vegetariana en Pediatría</strong>
+                <span>Escuela de Formación Continua Kimun</span>
+              </div>
+            </li>
+
+          </ul>
+
+          <!-- Separador -->
+          <h3 class="formacion-subtitulo" style="margin-top: 2rem;">
+            <i class="fas fa-book-open"></i> Cursos y Capacitaciones
+          </h3>
+
+          <ul class="formacion-lista">
+
+            <li class="formacion-item">
+              <span class="formacion-anio">2025</span>
+              <div class="formacion-detalle">
+                <strong>XXXV Curso Problemas Frecuentes en Medicina Ambulatoria del Adulto</strong>
+                <span>Sociedad Médica de Santiago</span>
+              </div>
+            </li>
+
+            <li class="formacion-item">
+              <span class="formacion-anio">2024</span>
+              <div class="formacion-detalle">
+                <strong>Microbioma en la Práctica Clínica</strong>
+                <span>Escuela de Salud Microbiana</span>
+              </div>
+            </li>
+
+            <li class="formacion-item">
+              <span class="formacion-anio">2022</span>
+              <div class="formacion-detalle">
+                <strong>XL Curso de Enseñanza Continua de Postgrado en Pediatría Primaria y Ambulatoria</strong>
+                <span>FUDOC — Módulo I: Infecciones Respiratorias Agudas · Módulo II: Endocrinología, Infeccioso y Parasitología</span>
+              </div>
+            </li>
+
+            <li class="formacion-item">
+              <span class="formacion-anio">2022</span>
+              <div class="formacion-detalle">
+                <strong>Capacitación de Enfermedades Transmisibles para Médicos en Etapa de Destinación</strong>
+                <span>MINSAL</span>
+              </div>
+            </li>
+
+            <li class="formacion-item">
+              <span class="formacion-anio">2021</span>
+              <div class="formacion-detalle">
+                <strong>Niñez y Adolescencia Trans: Mirada Integral a una Realidad Urgente</strong>
+                <span>Fundación Renaciendo</span>
+              </div>
+            </li>
+
+            <li class="formacion-item">
+              <span class="formacion-anio">2020</span>
+              <div class="formacion-detalle">
+                <strong>Psychological First Aid</strong>
+                <span>Johns Hopkins University</span>
+              </div>
+            </li>
+
+            <li class="formacion-item">
+              <span class="formacion-anio">2020</span>
+              <div class="formacion-detalle">
+                <strong>Preparándonos para el Invierno</strong>
+                <span>SOCHIPE</span>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECCIÓN CONTACTO
+       Formulario que envía al email via Formspree.
+       Botón de WhatsApp incluido pero OCULTO (clase "oculto").
+       Para activarlo: eliminar la clase "oculto" del botón de WhatsApp.
+  ============================================================ -->
+  <section id="contacto" class="seccion seccion-oscura">
+    <div class="contenedor">
+
+      <div class="seccion-titulo-wrapper">
+        <h2 class="seccion-titulo">Contacto</h2>
+        <div class="seccion-linea"></div>
+      </div>
+
+      <div class="contacto-grid">
+
+        <!-- Información de contacto directa -->
+        <div class="contacto-info">
+
+          <h3>¿Necesitas una consulta?</h3>
+          <p>
+            Puedes escribirme directamente o completar el formulario
+            y me pondré en contacto a la brevedad.
+          </p>
+
+          <ul class="contacto-datos">
+            <li>
+              <i class="fas fa-phone"></i>
+              <a href="tel:+56944476090">+56 9 4447 6090</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:tamaravega@ug.uchile.cl">tamaravega@ug.uchile.cl</a>
+            </li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Puerto Varas &amp; Puerto Montt, Región de Los Lagos</span>
+            </li>
+          </ul>
+
+          <!-- =====================================================
+               BOTÓN WHATSAPP — OCULTO POR AHORA
+               Para activarlo: eliminar la clase "oculto" de este <a>
+               Reemplaza el número en el href si cambia.
+          ====================================================== -->
+          <a
+            href="https://wa.me/56944476090?text=Hola%20Dra.%20Tamara%2C%20quisiera%20consultar%20sobre%20una%20atenci%C3%B3n."
+            class="btn-whatsapp oculto"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Contactar por WhatsApp"
+          >
+            <i class="fab fa-whatsapp"></i> Escribir por WhatsApp
+          </a>
+
+        </div>
+
+        <!-- Formulario de contacto -->
+        <div class="contacto-formulario">
+          <!--
+            INSTRUCCIONES FORMSPREE:
+            1. Ve a formspree.io y crea una cuenta gratuita
+            2. Crea un nuevo formulario y copia tu endpoint
+            3. Reemplaza "TU_ID_DE_FORMSPREE" por el ID que te dan
+               Ejemplo: action="https://formspree.io/f/xyzabcde"
+          -->
+          <form
+            action="https://formspree.io/f/TU_ID_DE_FORMSPREE"
+            method="POST"
+            class="formulario"
+            id="formulario-contacto"
+          >
+
+            <div class="campo-grupo">
+              <label for="nombre">Nombre completo</label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                placeholder="Tu nombre"
+                required
+              />
+            </div>
+
+            <div class="campo-grupo">
+              <label for="email">Correo electrónico</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="tu@correo.com"
+                required
+              />
+            </div>
+
+            <div class="campo-grupo">
+              <label for="telefono">Teléfono (opcional)</label>
+              <input
+                type="tel"
+                id="telefono"
+                name="telefono"
+                placeholder="+56 9 XXXX XXXX"
+              />
+            </div>
+
+            <div class="campo-grupo">
+              <label for="mensaje">Mensaje</label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                rows="4"
+                placeholder="¿En qué puedo ayudarte?"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primario btn-full">
+              <i class="fas fa-paper-plane"></i> Enviar mensaje
+            </button>
+
+            <!-- Mensaje de éxito (se muestra con JS tras enviar) -->
+            <p class="formulario-exito oculto" id="formulario-exito">
+              <i class="fas fa-check-circle"></i>
+              ¡Mensaje enviado! Te contactaré a la brevedad.
+            </p>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PIE DE PÁGINA (FOOTER)
+  ============================================================ -->
+  <footer class="footer">
+    <div class="contenedor">
+      <p>
+        &copy; 2025 Dra. Tamara Vega Ortega — Médica Cirujana
+      </p>
+      <p class="footer-sub">
+        Diseñado con <i class="fas fa-heart"></i> en Puerto Montt, Chile
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT PRINCIPAL
+       Se carga al final del body para no bloquear la carga de la página.
+  ============================================================ -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>

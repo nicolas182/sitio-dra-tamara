@@ -1,0 +1,1305 @@
+/* ================================================================
+   SITIO WEB — DRA. TAMARA VEGA ORTEGA
+   Archivo: css/styles.css
+   Descripción: Estilos principales con 3 temas intercambiables.
+   
+   ÍNDICE:
+   1.  Variables de temas (colores)
+   2.  Reset y base
+   3.  Tipografía
+   4.  Utilidades
+   5.  Selector de tema
+   6.  Header y navegación
+   7.  Sección Hero
+   8.  Sección Perfil
+   9.  Sección Experiencia (Timeline)
+   10. Sección Formación
+   11. Sección Contacto
+   12. Footer
+   13. Animaciones
+   14. Responsive (móviles y tablets)
+================================================================ */
+
+
+/* ================================================================
+   1. VARIABLES DE TEMAS
+   Cada tema define sus propios colores usando variables CSS.
+   El JS cambia el atributo data-theme en <body> para cambiar tema.
+================================================================ */
+
+/* --- Tema Azul / Turquesa (por defecto) --- */
+[data-theme="azul"],
+body {
+  --color-primario:     #1a7fa8;   /* Azul principal */
+  --color-primario-osc: #135f80;   /* Azul oscuro (hover) */
+  --color-acento:       #4fc3d1;   /* Turquesa claro */
+  --color-acento-suave: #e8f6f9;   /* Fondo muy suave */
+  --color-punto:        #4fc3d1;   /* Color del punto en timeline */
+  --color-badge:        #d0eef4;   /* Fondo del badge del título */
+  --color-badge-texto:  #135f80;   /* Texto del badge */
+}
+
+/* --- Tema Verde Salud --- */
+[data-theme="verde"] {
+  --color-primario:     #2e8b57;   /* Verde salud */
+  --color-primario-osc: #1f6b3e;   /* Verde oscuro (hover) */
+  --color-acento:       #52c07a;   /* Verde claro */
+  --color-acento-suave: #e8f5ec;   /* Fondo muy suave verde */
+  --color-punto:        #52c07a;
+  --color-badge:        #d4edda;
+  --color-badge-texto:  #1f6b3e;
+}
+
+/* --- Tema Rosa Profesional --- */
+[data-theme="rosa"] {
+  --color-primario:     #b5537a;   /* Rosa oscuro profesional */
+  --color-primario-osc: #8e3b5c;   /* Rosa más oscuro (hover) */
+  --color-acento:       #e07fa0;   /* Rosa medio */
+  --color-acento-suave: #fdf0f4;   /* Fondo muy suave rosado */
+  --color-punto:        #e07fa0;
+  --color-badge:        #f9d4e2;
+  --color-badge-texto:  #8e3b5c;
+}
+
+/* --- Variables globales (iguales en todos los temas) --- */
+body {
+  --color-texto:        #2c2c2c;   /* Texto principal oscuro */
+  --color-texto-suave:  #666666;   /* Texto secundario gris */
+  --color-fondo-claro:  #f9f9f9;   /* Sección clara */
+  --color-fondo-oscuro: #1e2a35;   /* Sección oscura (azul noche) */
+  --color-blanco:       #ffffff;
+  --color-linea:        #e0e0e0;   /* Bordes y separadores */
+
+  --fuente-titulo: 'Playfair Display', Georgia, serif;
+  --fuente-cuerpo: 'Lato', Helvetica, Arial, sans-serif;
+
+  --radio-borde:   8px;            /* Bordes redondeados */
+  --sombra:        0 4px 20px rgba(0,0,0,0.08);
+  --transicion:    0.3s ease;      /* Velocidad de animaciones */
+}
+
+
+/* ================================================================
+   2. RESET Y BASE
+   Elimina estilos por defecto del navegador para partir de cero.
+================================================================ */
+
+/* Aplica box-sizing a todo: el padding/border no agranda el elemento */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Desplazamiento suave al hacer clic en links de navegación */
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--fuente-cuerpo);
+  color: var(--color-texto);
+  background-color: var(--color-blanco);
+  line-height: 1.7;
+  /* Transición suave al cambiar de tema */
+  transition: background-color var(--transicion), color var(--transicion);
+}
+
+/* Elimina bullets de listas */
+ul { list-style: none; }
+
+/* Hace que las imágenes no desborden su contenedor */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Elimina subrayado de links por defecto */
+a { text-decoration: none; color: inherit; }
+
+
+/* ================================================================
+   3. TIPOGRAFÍA
+================================================================ */
+
+h1, h2, h3, h4 {
+  font-family: var(--fuente-titulo);
+  line-height: 1.2;
+  color: var(--color-texto);
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--color-texto-suave);
+}
+
+/* Último párrafo de un bloque sin margen extra */
+p:last-child { margin-bottom: 0; }
+
+
+/* ================================================================
+   4. UTILIDADES
+================================================================ */
+
+/* Clase para ocultar elementos (WhatsApp, mensaje éxito formulario) */
+.oculto { display: none !important; }
+
+/* Contenedor centrado con ancho máximo */
+.contenedor {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Estilos base de secciones */
+.seccion {
+  padding: 5rem 0;
+}
+
+/* Fondo claro para secciones alternas */
+.seccion-clara {
+  background-color: var(--color-fondo-claro);
+}
+
+/* Fondo oscuro (Experiencia y Contacto) */
+.seccion-oscura {
+  background-color: var(--color-fondo-oscuro);
+}
+
+/* Título de sección con línea decorativa */
+.seccion-titulo-wrapper {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.seccion-titulo {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-texto);
+}
+
+/* En secciones oscuras el título es blanco */
+.seccion-oscura .seccion-titulo {
+  color: var(--color-blanco);
+}
+
+/* Línea decorativa bajo el título */
+.seccion-linea {
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-primario);
+  margin: 0 auto;
+  border-radius: 2px;
+  transition: background-color var(--transicion);
+}
+
+/* Botones */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border-radius: var(--radio-borde);
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all var(--transicion);
+  border: 2px solid transparent;
+}
+
+.btn-primario {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+}
+
+.btn-primario:hover {
+  background-color: var(--color-primario-osc);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.btn-secundario {
+  background-color: transparent;
+  color: var(--color-blanco);
+  border-color: rgba(255,255,255,0.6);
+}
+
+.btn-secundario:hover {
+  background-color: rgba(255,255,255,0.15);
+  border-color: var(--color-blanco);
+}
+
+/* Botón que ocupa todo el ancho */
+.btn-full { width: 100%; text-align: center; }
+
+/* Badge (etiqueta de fecha del título) */
+.badge {
+  display: inline-block;
+  background-color: var(--color-badge);
+  color: var(--color-badge-texto);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.2rem 0.75rem;
+  border-radius: 20px;
+  margin-top: 0.4rem;
+  transition: background-color var(--transicion), color var(--transicion);
+}
+
+
+/* ================================================================
+   5. SELECTOR DE TEMA
+   Panel flotante visible solo durante el desarrollo.
+================================================================ */
+
+#theme-selector {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  background: var(--color-blanco);
+  border: 1px solid var(--color-linea);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.85rem;
+}
+
+.theme-label {
+  color: var(--color-texto-suave);
+  font-weight: 700;
+  margin-right: 0.25rem;
+}
+
+.theme-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: none;
+  border: 1px solid var(--color-linea);
+  border-radius: 20px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--color-texto);
+  transition: all var(--transicion);
+}
+
+.theme-btn:hover,
+.theme-btn.active {
+  border-color: var(--color-primario);
+  color: var(--color-primario);
+}
+
+/* Círculo de color en cada botón */
+.theme-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.theme-dot.azul  { background: #1a7fa8; }
+.theme-dot.verde { background: #2e8b57; }
+.theme-dot.rosa  { background: #b5537a; }
+
+
+/* ================================================================
+   6. HEADER Y NAVEGACIÓN
+================================================================ */
+
+#header {
+  position: fixed;        /* Se queda fijo al hacer scroll */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: transparent;
+  transition: background var(--transicion), box-shadow var(--transicion);
+  padding: 1.25rem 0;
+}
+
+/* Clase que agrega JS cuando se hace scroll: fondo blanco */
+#header.scrolled {
+  background: var(--color-blanco);
+  box-shadow: var(--sombra);
+  padding: 0.75rem 0;
+}
+
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo / nombre en el header */
+.nav-logo {
+  font-family: var(--fuente-titulo);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-blanco);
+  transition: color var(--transicion);
+}
+
+/* Cuando hay scroll el logo se pone oscuro */
+#header.scrolled .nav-logo {
+  color: var(--color-primario);
+}
+
+/* Lista de links de navegación */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: rgba(255,255,255,0.9);
+  transition: color var(--transicion);
+  position: relative;
+}
+
+/* Línea animada bajo el link al hacer hover */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-acento);
+  transition: width var(--transicion);
+}
+
+.nav-link:hover::after { width: 100%; }
+
+/* Con scroll los links se ponen oscuros */
+#header.scrolled .nav-link {
+  color: var(--color-texto);
+}
+
+#header.scrolled .nav-link:hover {
+  color: var(--color-primario);
+}
+
+/* Botón hamburguesa (solo visible en móvil) */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-blanco);
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: color var(--transicion);
+}
+
+#header.scrolled .nav-toggle { color: var(--color-texto); }
+
+
+/* ================================================================
+   7. SECCIÓN HERO — Fusión v4
+   Estructura: nombre izquierda | barras | foto círculos | barras | datos derecha
+================================================================ */
+
+.hero {
+  min-height: 100vh;
+  background: var(--color-acento-suave);
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  position: relative;
+  /* Empuja el contenido hacia abajo del header fijo */
+  padding-top: 80px;
+}
+
+/* Texto decorativo de fondo — sutil pero presente */
+.hero-bg-txt {
+  position: absolute;
+  font-family: var(--fuente-titulo);
+  font-size: clamp(60px, 9vw, 100px);  /* Se adapta al ancho de pantalla */
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.055);         /* Neutral para que funcione en los 3 temas */
+  white-space: nowrap;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  letter-spacing: -3px;
+  user-select: none;
+  z-index: 1;
+}
+
+/* ── IZQUIERDA: nombre alineado a la derecha ── */
+.hero-izq {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 2;
+  padding-right: 2rem;
+}
+
+.hero-nombre-bloque {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.hero-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--color-primario);
+  margin-bottom: 0.75rem;
+  transition: color var(--transicion);
+}
+
+.hero-nombre {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  color: #1a2a3a;
+  line-height: 1.15;
+  margin: 0;
+}
+
+/* El apellido en cursiva y con color de acento */
+.hero-nombre em {
+  font-style: italic;
+  color: var(--color-primario);
+  display: block;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  transition: color var(--transicion);
+}
+
+.hero-univ {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}
+
+.hero-univ i {
+  font-size: 0.75rem;
+  color: var(--color-primario);
+  transition: color var(--transicion);
+}
+
+/* ── BARRA IZQUIERDA ── */
+.hero-barra-izq {
+  width: 3px;
+  height: 150px;
+  background: linear-gradient(180deg, var(--color-primario), var(--color-acento));
+  border-radius: 2px;
+  align-self: center;
+  flex-shrink: 0;
+  transition: background var(--transicion);
+}
+
+/* ── CENTRO: foto con círculos concéntricos ── */
+.hero-centro {
+  width: 260px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Círculo más externo — muy tenue */
+.hero-circulo-3 {
+  position: absolute;
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Círculo medio */
+.hero-circulo-2 {
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  border: 1px solid var(--color-primario);
+  opacity: 0.15;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: border-color var(--transicion);
+}
+
+/* Círculo interior — más visible */
+.hero-circulo-1 {
+  position: absolute;
+  width: 194px;
+  height: 194px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-primario);
+  opacity: 0.25;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: border-color var(--transicion);
+}
+
+/* Foto de la doctora — sube hasta el tope del hero */
+.hero-foto {
+  width: 180px;
+  height: 100%;
+  max-height: calc(100vh - 80px);
+  object-fit: cover;
+  object-position: top;   /* Prioriza la cara */
+  border-radius: 90px 90px 0 0;
+  position: relative;
+  z-index: 2;
+  display: block;
+}
+
+/* ── BARRA DERECHA ── */
+.hero-barra-der {
+  width: 3px;
+  height: 150px;
+  background: linear-gradient(180deg, var(--color-acento), var(--color-primario));
+  border-radius: 2px;
+  align-self: center;
+  flex-shrink: 0;
+  transition: background var(--transicion);
+}
+
+/* ── DERECHA: datos alineados a la izquierda ── */
+.hero-der {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  z-index: 2;
+  padding-left: 2rem;
+}
+
+.hero-datos-bloque {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.hero-dato {
+  font-size: 0.78rem;
+  color: #4a6478;
+  margin-bottom: 0.55rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 0;
+}
+
+.hero-dato i {
+  font-size: 0.8rem;
+  color: var(--color-primario);
+  width: 14px;
+  text-align: center;
+  flex-shrink: 0;
+  transition: color var(--transicion);
+}
+
+/* Botones del hero — lado a lado */
+.hero-btns {
+  display: flex;
+  flex-direction: row;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.btn-hero-primario {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  padding: 0.55rem 1.2rem;
+  border-radius: var(--radio-borde);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 2px solid transparent;
+  transition: all var(--transicion);
+  white-space: nowrap;
+}
+
+.btn-hero-primario:hover {
+  background-color: var(--color-primario-osc);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+}
+
+.btn-hero-secundario {
+  background-color: transparent;
+  color: var(--color-primario);
+  padding: 0.55rem 1.2rem;
+  border-radius: var(--radio-borde);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1.5px solid var(--color-primario);
+  transition: all var(--transicion);
+  white-space: nowrap;
+}
+
+.btn-hero-secundario:hover {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  transform: translateY(-2px);
+}
+
+/* ── RESPONSIVE HERO ── */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 7rem 1.5rem 3rem;
+    gap: 1.5rem;
+    min-height: 100vh;
+  }
+
+  .hero-bg-txt { font-size: 40px; }
+
+  /* En móvil ocultamos las barras verticales */
+  .hero-barra-izq,
+  .hero-barra-der { display: none; }
+
+  /* Izquierda pasa a centrarse */
+  .hero-izq {
+    justify-content: center;
+    padding: 0;
+    order: 2;
+  }
+
+  .hero-nombre-bloque {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-univ { justify-content: center; }
+
+  /* Centro (foto) va primero en móvil */
+  .hero-centro {
+    order: 1;
+    width: 180px;
+    height: 220px;
+  }
+
+  .hero-foto {
+    width: 140px;
+    height: 220px;
+  }
+
+  .hero-circulo-1 { width: 160px; height: 160px; }
+  .hero-circulo-2 { width: 175px; height: 175px; }
+  .hero-circulo-3 { width: 190px; height: 190px; }
+
+  /* Derecha también se centra */
+  .hero-der {
+    justify-content: center;
+    padding: 0;
+    order: 3;
+  }
+
+  .hero-datos-bloque {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-btns { justify-content: center; }
+}
+/* ================================================================
+   8. SECCIÓN PERFIL
+================================================================ */
+
+/* Grid de 2 columnas: texto a la izquierda, tarjetas a la derecha */
+.perfil-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
+.perfil-texto p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.perfil-texto strong {
+  color: var(--color-primario);
+  transition: color var(--transicion);
+}
+
+/* Grid de 4 tarjetas de áreas */
+.perfil-areas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.area-card {
+  background: var(--color-blanco);
+  border-radius: var(--radio-borde);
+  padding: 1.25rem;
+  box-shadow: var(--sombra);
+  transition: transform var(--transicion), box-shadow var(--transicion);
+  border-top: 3px solid var(--color-primario);
+}
+
+.area-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.area-icono {
+  font-size: 1.5rem;
+  color: var(--color-primario);
+  margin-bottom: 0.6rem;
+  transition: color var(--transicion);
+}
+
+.area-card h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  font-family: var(--fuente-cuerpo);
+  font-weight: 700;
+  color: var(--color-texto);
+}
+
+.area-card p {
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Dato del idioma al pie del perfil */
+.perfil-idioma {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--color-acento-suave);
+  border-left: 4px solid var(--color-primario);
+  border-radius: 0 var(--radio-borde) var(--radio-borde) 0;
+  padding: 1rem 1.25rem;
+  font-size: 0.95rem;
+  transition: background var(--transicion), border-color var(--transicion);
+}
+
+.perfil-idioma i {
+  font-size: 1.4rem;
+  color: var(--color-primario);
+  transition: color var(--transicion);
+}
+
+
+/* ================================================================
+   9. SECCIÓN EXPERIENCIA — TIMELINE
+================================================================ */
+
+.timeline {
+  position: relative;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* Línea vertical del timeline */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 18px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255,255,255,0.15);
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 60px;
+  margin-bottom: 2.5rem;
+}
+
+.timeline-item:last-child { margin-bottom: 0; }
+
+/* Punto circular en la línea */
+.timeline-punto {
+  position: absolute;
+  left: 8px;
+  top: 20px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-punto);
+  border: 3px solid var(--color-fondo-oscuro);
+  box-shadow: 0 0 0 3px var(--color-punto);
+  transition: background var(--transicion), box-shadow var(--transicion);
+}
+
+/* Tarjeta del ítem */
+.timeline-tarjeta {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radio-borde);
+  padding: 1.5rem;
+  transition: background var(--transicion);
+}
+
+.timeline-tarjeta:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.timeline-fecha {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--color-acento);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  transition: color var(--transicion);
+}
+
+.timeline-cargo {
+  font-size: 1.15rem;
+  color: var(--color-blanco);
+  font-family: var(--fuente-titulo);
+  margin-bottom: 0.4rem;
+}
+
+.timeline-lugar {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.timeline-desc {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+}
+
+
+/* ================================================================
+   10. SECCIÓN FORMACIÓN
+================================================================ */
+
+/* Dos columnas: título a la izquierda, cursos a la derecha */
+.formacion-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+}
+
+.formacion-subtitulo {
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-primario);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color var(--transicion);
+}
+
+/* Tarjeta del título universitario */
+.formacion-titulo-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: var(--color-blanco);
+  border-radius: var(--radio-borde);
+  padding: 1.5rem;
+  box-shadow: var(--sombra);
+  border-top: 4px solid var(--color-primario);
+  transition: border-color var(--transicion);
+}
+
+.formacion-titulo-icon {
+  font-size: 2rem;
+  color: var(--color-primario);
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  transition: color var(--transicion);
+}
+
+.formacion-titulo-card h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.2rem;
+}
+
+.formacion-titulo-card p {
+  font-size: 0.9rem;
+  color: var(--color-texto-suave);
+  margin: 0 0 0.4rem;
+}
+
+/* Lista de cursos */
+.formacion-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.formacion-item {
+  display: flex;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--color-linea);
+  align-items: flex-start;
+}
+
+.formacion-item:last-child { border-bottom: none; }
+
+/* Año del curso */
+.formacion-anio {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primario);
+  min-width: 38px;
+  padding-top: 2px;
+  transition: color var(--transicion);
+}
+
+.formacion-detalle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.formacion-detalle strong {
+  font-size: 0.92rem;
+  color: var(--color-texto);
+  line-height: 1.4;
+}
+
+.formacion-detalle span {
+  font-size: 0.82rem;
+  color: var(--color-texto-suave);
+}
+
+
+/* ================================================================
+   11. SECCIÓN CONTACTO
+================================================================ */
+
+/* Dos columnas: info a la izquierda, formulario a la derecha */
+.contacto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.contacto-info h3 {
+  font-size: 1.5rem;
+  color: var(--color-blanco);
+  margin-bottom: 0.75rem;
+}
+
+.contacto-info > p {
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 1.5rem;
+}
+
+/* Lista de datos de contacto */
+.contacto-datos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.contacto-datos li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.95rem;
+}
+
+.contacto-datos li i {
+  color: var(--color-acento);
+  font-size: 1rem;
+  width: 20px;
+  text-align: center;
+  transition: color var(--transicion);
+}
+
+.contacto-datos li a {
+  color: rgba(255,255,255,0.8);
+  transition: color var(--transicion);
+}
+
+.contacto-datos li a:hover { color: var(--color-acento); }
+
+/* Botón WhatsApp (oculto por defecto) */
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #25D366;
+  color: var(--color-blanco);
+  padding: 0.7rem 1.5rem;
+  border-radius: var(--radio-borde);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background var(--transicion), transform var(--transicion);
+}
+
+.btn-whatsapp:hover {
+  background: #1ebe5d;
+  transform: translateY(-2px);
+}
+
+.btn-whatsapp i { font-size: 1.1rem; }
+
+/* Formulario */
+.formulario {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radio-borde);
+  padding: 2rem;
+}
+
+.campo-grupo {
+  margin-bottom: 1.25rem;
+}
+
+.campo-grupo label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.3px;
+}
+
+/* Inputs y textarea */
+.campo-grupo input,
+.campo-grupo textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--radio-borde);
+  color: var(--color-blanco);
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.95rem;
+  transition: border-color var(--transicion), background var(--transicion);
+  outline: none;
+}
+
+.campo-grupo input::placeholder,
+.campo-grupo textarea::placeholder {
+  color: rgba(255,255,255,0.3);
+}
+
+.campo-grupo input:focus,
+.campo-grupo textarea:focus {
+  border-color: var(--color-acento);
+  background: rgba(255,255,255,0.12);
+}
+
+.campo-grupo textarea { resize: vertical; min-height: 100px; }
+
+/* Mensaje de éxito al enviar */
+.formulario-exito {
+  text-align: center;
+  color: #4ade80;    /* Verde éxito */
+  margin-top: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+
+/* ================================================================
+   12. FOOTER
+================================================================ */
+
+.footer {
+  background: #111820;   /* Más oscuro que las secciones oscuras */
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.footer p {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.footer-sub {
+  font-size: 0.8rem !important;
+  margin-top: 0.4rem !important;
+}
+
+.footer i { color: #e07fa0; font-size: 0.8rem; }
+
+
+/* ================================================================
+   13. ANIMACIONES
+================================================================ */
+
+/* Aparece desde la izquierda */
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Aparece desde la derecha */
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Flecha que rebota hacia abajo */
+@keyframes rebotar {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
+}
+
+/* Rotación del aro de la foto */
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Clase para hacer aparecer elementos al hacer scroll (agrega JS) */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ================================================================
+   14. RESPONSIVE
+   Adapta el sitio para tablets y celulares.
+================================================================ */
+
+/* --- Tablet (hasta 900px) --- */
+@media (max-width: 900px) {
+
+  /* Hero en columna */
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 2.5rem;
+    padding-top: 8rem;
+  }
+
+  .hero-nombre { font-size: 2.4rem; }
+
+  .hero-universidad,
+  .hero-ubicacion {
+    justify-content: center;
+  }
+
+  .hero-acciones { justify-content: center; }
+
+  /* Perfil en columna */
+  .perfil-grid { grid-template-columns: 1fr; }
+
+  /* Formación en columna */
+  .formacion-grid { grid-template-columns: 1fr; }
+
+  /* Contacto en columna */
+  .contacto-grid { grid-template-columns: 1fr; }
+}
+
+/* --- Móvil (hasta 600px) --- */
+@media (max-width: 600px) {
+
+  /* Menú hamburguesa */
+  .nav-toggle { display: block; }
+
+  /* El menú se esconde y se muestra con JS */
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--color-blanco);
+    flex-direction: column;
+    padding: 1rem 0;
+    gap: 0;
+    box-shadow: var(--sombra);
+  }
+
+  /* Cuando el JS agrega la clase "abierto" */
+  .nav-menu.abierto {
+    display: flex;
+  }
+
+  .nav-link {
+    color: var(--color-texto) !important;
+    padding: 0.75rem 2rem;
+    width: 100%;
+  }
+
+  .nav-link::after { display: none; }
+
+  /* Hero más compacto */
+  .hero-foto {
+    width: 180px;
+    height: 180px;
+  }
+
+  .hero-nombre { font-size: 2rem; }
+
+  /* Tarjetas de áreas en 1 columna */
+  .perfil-areas { grid-template-columns: 1fr; }
+
+  /* Selector de tema más pequeño */
+  #theme-selector {
+    bottom: 0.75rem;
+    right: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.78rem;
+  }
+}
