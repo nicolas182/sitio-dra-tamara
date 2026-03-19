@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Carga el tema guardado previamente (si el usuario ya eligió uno)
   // localStorage guarda datos en el navegador entre sesiones
-  const temaGuardado = localStorage.getItem('tema-elegido') || 'azul';
+  const temaGuardado = localStorage.getItem('tema-elegido') || 'rosa';
   aplicarTema(temaGuardado);
 
   // Agrega un evento de clic a cada botón
